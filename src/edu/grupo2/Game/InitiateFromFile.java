@@ -14,6 +14,9 @@ public class InitiateFromFile implements InitiateGame {
 
     InitiateFromFile (String filepath, String fileName)
     {
+        if (filepath.isEmpty()) {throw new AppGameErrorException("La ruta asociada al archivo esta vacía");}
+        if (fileName.isEmpty()) {throw new AppGameErrorException("No se ha ingresado el nombre del archivo");}
+
         this.filepath = filepath;
         this.fileName = fileName;
     }
@@ -23,11 +26,11 @@ public class InitiateFromFile implements InitiateGame {
         try {
             uploadFile(game);
         }catch (Exception e){
-            e.printStackTrace();
+            throw new AppGameErrorException("Se ha producido un error durante la carga del archivo "+e.getMessage());
         }
     }
 
-    public void uploadFile (Game game) throws FileNotFoundException, IOException {
+    public void uploadFile (Game game) throws IOException {
 
         String rawData;
         FileReader inputFile = new FileReader(this.filepath + this.fileName);
@@ -35,7 +38,7 @@ public class InitiateFromFile implements InitiateGame {
 
         while ((rawData = buffer.readLine()) != null) {
 
-            String[] rawInfo = rawData.split(this.rowSplit);
+            String[] rawInfo = rawData.split(rowSplit);
 
             game.addNewPlayer(rawInfo[0]);
             game.addRolls(rawInfo[0], Integer.parseInt(rawInfo[1].replace("F", "0")));
