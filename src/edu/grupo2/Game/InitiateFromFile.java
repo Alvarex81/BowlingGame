@@ -2,7 +2,6 @@ package edu.grupo2.Game;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public class InitiateFromFile implements InitiateGame {
@@ -41,7 +40,7 @@ public class InitiateFromFile implements InitiateGame {
             String[] rawInfo = rawData.split(rowSplit);
 
             game.addNewPlayer(rawInfo[0]);
-            game.addRolls(rawInfo[0], Integer.parseInt(rawInfo[1].replace("F", "0")));
+            game.addRolls(rawInfo[0], rawInfo[1]);
         }
     }
 }

@@ -9,6 +9,7 @@ public class Line {
 
     private String Name;
     private ArrayList<Integer> rolls;
+    private ArrayList<String> fouls;
     private int[] scores;
 
 
@@ -20,6 +21,7 @@ public class Line {
 
         this.Name = name;
         this.rolls = new ArrayList<>();
+        this.fouls = new ArrayList<>();
         this.scores = new int[10];
 
     }
@@ -28,10 +30,23 @@ public class Line {
         return Name;
     }
 
-    public void addRoll (int roll){
+    public void addRoll(int roll){
         //Validaciones
         if (roll  < 0 || roll > 10) {throw new AppGameErrorException("La cantidad de pinos registrada "+roll+"\nno se encuentra en el rango permitido 0..10");}
         this.rolls.add(roll);
+        this.fouls.add("");
+    }
+
+    public void addRoll(String roll) {
+
+        try {
+            if (roll.equals("F")) {
+                this.rolls.add(0);
+                this.fouls.add(roll);
+            } else addRoll(Integer.parseInt(roll));
+        } catch (Exception ex) {
+            throw new AppGameErrorException("El valor ingreso no es valido");
+        }
     }
 
     public void caculateScores (){
@@ -41,7 +56,6 @@ public class Line {
 
         if (rolls.size() < 12) { throw new AppGameErrorException("La cantidad de jugadas registradas no alcanza al minimo requerido para evaluar la puntuación."); }
         if (rolls.size() > 21) { throw new AppGameErrorException("La cantidad de jugadas registradas supera el maximo requerido para evaluar la puntuación."); }
-
 
         try {
             for (int i = 0; i < this.scores.length; i++) {
@@ -85,5 +99,13 @@ public class Line {
 
     public int getRoll(int cursor){
         return this.rolls.get(cursor);
+    }
+
+    public ArrayList<String> getFouls() {
+        return fouls;
+    }
+
+    public String getFoul(int cursor){
+        return this.fouls.get(cursor);
     }
 }

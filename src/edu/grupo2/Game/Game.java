@@ -6,7 +6,6 @@ import java.util.List;
 public class Game {
 
     private List<Line> lines;
-    private int[] rolls;
 
     public Game (){
         this.lines = new LinkedList<>();
@@ -25,6 +24,18 @@ public class Game {
             if (line.getName().equals(name)){
 
                 for (int roll :rolls){
+                    line.addRoll(roll);
+                }
+            }
+        }
+    }
+
+    public void addRolls(String name, String...rolls){
+
+        for (Line line :this.lines){
+            if (line.getName().equals(name)){
+
+                for (String roll :rolls){
                     line.addRoll(roll);
                 }
             }

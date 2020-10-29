@@ -22,37 +22,42 @@ public class DisplayInConsole implements DisplayGame {
 
     private String concatRolls (Line line){
 
-        String concatString = new String();
+        StringBuilder concatString = new StringBuilder();
 
         for (int i = 0; i < line.getRolls().size(); i++){
 
             if (line.isStrike(i)){
-                concatString += "| |X";
+                concatString.append("| |X");
             }
             else if (line.isSpare(i)){
-                concatString += "|"+line.getRoll(i)+"|/";
+                concatString.append("|").append(line.getRoll(i)).append("|/");
                 i++;
             }
             else {
-                concatString += "|"+line.getRoll(i)+"|"+line.getRoll(i+1);
+
+                if (line.getFoul(i).equals("F")){
+                    concatString.append("|").append(line.getFoul(i)).append("|").append(line.getRoll(i + 1));
+                }
+                else concatString.append("|").append(line.getRoll(i)).append("|").append(line.getRoll(i + 1));
+
                 i++;
             }
         }
 
-        concatString += "|";
+        concatString.append("|");
 
-        return concatString;
+        return concatString.toString();
     }
 
     private String concatScores (Line line){
 
-        String concatString = new String();
+        StringBuilder concatString = new StringBuilder();
 
         for (int score: line.getScores()){
-            concatString = concatString + score + "\t";
+            concatString.append(score).append("\t");
         }
 
-        return concatString;
+        return concatString.toString();
     }
 
     private void printLine(Game game){
