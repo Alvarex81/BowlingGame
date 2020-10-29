@@ -13,6 +13,9 @@ public class Main {
         game.addNewPlayer("Alvarex");
         game.addRolls("Alvarex", 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10);
 
+        game.addNewPlayer("Pedro");
+        game.addRolls("Pedro", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+
         initiator.start(game);
         game.calculatePuntuation();
         display.showGame (game);
