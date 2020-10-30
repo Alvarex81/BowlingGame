@@ -11,7 +11,7 @@ public class Line {
     private final ArrayList<Integer> rolls;
     private final ArrayList<String> fouls;
     private final int[] scores;
-
+    private int totalScore;
 
     Line (String name){
 
@@ -72,6 +72,7 @@ public class Line {
                 }
 
                 this.scores[i] = currentScore;
+                totalScore += currentScore;
             }
 
         }
@@ -107,5 +108,9 @@ public class Line {
 
     public String getFoul(int cursor){
         return this.fouls.get(cursor);
+    }
+
+    public int getTotalScore() {
+        return totalScore;
     }
 }

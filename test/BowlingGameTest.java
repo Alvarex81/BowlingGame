@@ -45,17 +45,17 @@ public class BowlingGameTest {
         g.addRolls("Juan",10,10,10,10,10,10,10,10,10,10,10,10);
         initiator.start(g);
         g.calculatePuntuation();
-        assertEquals(300,g.getLines().get(0).getScores()[9]);
+        assertEquals(300,g.getLines().get(0).getTotalScore());
     }
     @Test
-    public void testAllFoulsGameWith() {
+    public void testAllFoulsGame() {
         Game g = new Game();
         InitiateGame initiator = new InitiateSingleGame();
         g.addNewPlayer("Juan");
         g.addRolls("Juan","F","F","F","F","F","F","F","F","F","F","F","F","F","F","F","F","F","F","F","F");
         initiator.start(g);
         g.calculatePuntuation();
-        assertEquals(0,g.getLines().get(0).getScores()[9]);
+        assertEquals(0,g.getLines().get(0).getTotalScore());
     }
     @Test
     public void testNearPerfectGameWithZero() {
@@ -65,6 +65,6 @@ public class BowlingGameTest {
         g.addRolls("Juan",10,10,10,10,10,10,10,10,10,0,0);
         initiator.start(g);
         g.calculatePuntuation();
-        assertEquals(240,g.getLines().get(0).getScores()[9]);
+        assertEquals(240,g.getLines().get(0).getTotalScore());
     }
 }
