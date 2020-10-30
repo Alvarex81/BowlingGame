@@ -23,7 +23,7 @@ Clase InitiateSingleGame --> Objetivo: Implementacion concreta para inicializar 
 **ISP** EL diseño considera interfaces especificas con metodos abstractos (DisplayGame, InitiateGame) que se utilicen por los clientes, las interfaces estan implementadas en clases concretas para los comportamientos de visuarlizacion en consola e inicializacion desde un archivo de texto plano.   
 
 **Patrones aplicados**   
-Patron Strateg: Se ha utilizado para la implementacion de DisplayGame e InitiateGame.
+Patron Strategy: Se ha utilizado para la implementacion de DisplayGame e InitiateGame.
 
 **Pruebas unitarias**   
 Se ha implementado pruebas unitarias representativas para validar las jugadas de Strike, Spare, Juego Perfecto, Juego con Faltas y Juego sin ningun bolo derribado.   
