@@ -54,7 +54,7 @@ public class Line {
         int cursor = 0;
         int currentScore = 0;
 
-        if (rolls.size() < 12) { throw new AppGameErrorException("La cantidad de jugadas registradas no alcanza al minimo requerido para evaluar la puntuación."); }
+        if (rolls.size() < 11) { throw new AppGameErrorException("La cantidad de jugadas registradas no alcanza al minimo requerido para evaluar la puntuación."); }
         if (rolls.size() > 21) { throw new AppGameErrorException("La cantidad de jugadas registradas supera el maximo requerido para evaluar la puntuación."); }
 
         try {
