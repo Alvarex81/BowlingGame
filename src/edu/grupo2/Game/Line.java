@@ -7,10 +7,10 @@ public class Line {
     private static final int maxPins = 10;
     private static final int maxNameCharacters = 11;
 
-    private String Name;
-    private ArrayList<Integer> rolls;
-    private ArrayList<String> fouls;
-    private int[] scores;
+    private final String Name;
+    private final ArrayList<Integer> rolls;
+    private final ArrayList<String> fouls;
+    private final int[] scores;
 
 
     Line (String name){

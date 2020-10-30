@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Game {
 
-    private List<Line> lines;
+    private final List<Line> lines;
 
     public Game (){
         this.lines = new LinkedList<>();
