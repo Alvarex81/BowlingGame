@@ -36,9 +36,14 @@ public class DisplayInConsole implements DisplayGame {
             else {
 
                 if (line.getFoul(i).equals("F")){
-                    concatString.append("|").append(line.getFoul(i)).append("|").append(line.getRoll(i + 1));
+                    concatString.append("|").append(line.getFoul(i));
                 }
-                else concatString.append("|").append(line.getRoll(i)).append("|").append(line.getRoll(i + 1));
+                else concatString.append("|").append(line.getRoll(i));
+
+                if (line.getFoul(i+1).equals("F")){
+                    concatString.append("|").append(line.getFoul(i+1));
+                }
+                else concatString.append("|").append(line.getRoll(i+1));
 
                 i++;
             }

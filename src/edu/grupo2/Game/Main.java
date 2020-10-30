@@ -14,9 +14,11 @@ public class Main {
             game.addNewPlayer("Alvarex");
             game.addRolls("Alvarex", 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10);
 
+            game.addNewPlayer("Luis");
+            game.addRolls("Luis", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+
             game.addNewPlayer("Pedro");
-            game.addRolls("Pedro", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-            //game.addRolls("Pedro", 10, 10, 10);
+            game.addRolls("Pedro", "F", "F", "F", "F", "F", "F", "F", "F", "F", "F", "F", "F", "F", "F", "F", "F", "F", "F", "F", "F");
 
             initiator.start(game);
             game.calculatePuntuation();
