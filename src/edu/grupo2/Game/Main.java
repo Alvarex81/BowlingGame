@@ -4,8 +4,8 @@ import java.io.IOException;
 
 public class Main {
 
-    public static void main(String[] args)  {
-	// write your code here
+    public static void main(String[] args) {
+        // write your code here
         try {
             Game game = new Game();
             DisplayGame display = new DisplayInConsole();
@@ -23,8 +23,7 @@ public class Main {
             initiator.start(game);
             game.calculatePuntuation();
             display.showGame(game);
-        }
-        catch (AppGameErrorException ex) {
+        } catch (AppGameErrorException ex) {
             System.out.println("ERROR - JUEGO ABORTADO");
             System.out.println(ex.getMessage());
         }

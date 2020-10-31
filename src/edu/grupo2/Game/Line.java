@@ -1,6 +1,7 @@
 package edu.grupo2.Game;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Line {
 
@@ -13,11 +14,15 @@ public class Line {
     private final int[] scores;
     private int totalScore;
 
-    Line (String name){
+    Line(String name) {
 
         //Validaciones
-        if (name.isEmpty()) {throw new AppGameErrorException("Nombre de linea vacio");}
-        if (name.length() >= maxNameCharacters) {throw new AppGameErrorException("El nombre asignado a la linea: "+ name +"\nsupera los 11 caracteres, no puede ser mostrado en pantalla.");}
+        if (name.isEmpty()) {
+            throw new AppGameErrorException("Nombre de linea vacio");
+        }
+        if (name.length() >= maxNameCharacters) {
+            throw new AppGameErrorException("El nombre asignado a la linea: " + name + "\nsupera los 11 caracteres, no puede ser mostrado en pantalla.");
+        }
 
         this.Name = name;
         this.rolls = new ArrayList<>();
@@ -30,9 +35,11 @@ public class Line {
         return Name;
     }
 
-    public void addRoll(int roll){
+    public void addRoll(int roll) {
         //Validaciones
-        if (roll  < 0 || roll > 10) {throw new AppGameErrorException("La cantidad de pinos registrada "+roll+"\nno se encuentra en el rango permitido 0..10");}
+        if (roll < 0 || roll > 10) {
+            throw new AppGameErrorException("La cantidad de pinos registrada " + roll + "\nno se encuentra en el rango permitido 0..10");
+        }
         this.rolls.add(roll);
         this.fouls.add("");
     }
@@ -49,13 +56,17 @@ public class Line {
         }
     }
 
-    public void caculateScores (){
+    public void caculateScores() {
 
         int cursor = 0;
         int currentScore = 0;
 
-        if (rolls.size() < 11) { throw new AppGameErrorException("La cantidad de jugadas registradas no alcanza al minimo requerido para evaluar la puntuación."); }
-        if (rolls.size() > 21) { throw new AppGameErrorException("La cantidad de jugadas registradas supera el maximo requerido para evaluar la puntuación."); }
+        if (rolls.size() < 11) {
+            throw new AppGameErrorException("La cantidad de jugadas registradas no alcanza al minimo requerido para evaluar la puntuación.");
+        }
+        if (rolls.size() > 21) {
+            throw new AppGameErrorException("La cantidad de jugadas registradas supera el maximo requerido para evaluar la puntuación.");
+        }
 
         try {
             for (int i = 0; i < this.scores.length; i++) {
@@ -75,19 +86,18 @@ public class Line {
                 totalScore += currentScore;
             }
 
-        }
-        catch (Exception ex){
+        } catch (Exception ex) {
 
             throw new AppGameErrorException("EL calculo de las puntuaciones no se ha podido completar, no se han registrado la cantidad de jugadas requeridas");
         }
     }
 
-    public boolean isStrike (int cursor) {
+    public boolean isStrike(int cursor) {
         return this.rolls.get(cursor) == maxPins;
     }
 
-    public boolean isSpare (int cursor) {
-        return this.rolls.get(cursor) + this.rolls.get(cursor+1) == maxPins;
+    public boolean isSpare(int cursor) {
+        return this.rolls.get(cursor) + this.rolls.get(cursor + 1) == maxPins;
     }
 
     public ArrayList<Integer> getRolls() {
@@ -98,7 +108,11 @@ public class Line {
         return scores;
     }
 
-    public int getRoll(int cursor){
+    public int getLastScore() {
+        return scores[this.scores.length - 1];
+    }
+
+    public int getRoll(int cursor) {
         return this.rolls.get(cursor);
     }
 
@@ -106,7 +120,7 @@ public class Line {
         return fouls;
     }
 
-    public String getFoul(int cursor){
+    public String getFoul(int cursor) {
         return this.fouls.get(cursor);
     }
 

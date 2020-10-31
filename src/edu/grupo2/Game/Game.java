@@ -1,65 +1,92 @@
 package edu.grupo2.Game;
 
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Game {
 
     private final List<Line> lines;
 
-    public Game (){
+    public Game() {
         this.lines = new LinkedList<>();
     }
 
-    public void addNewPlayer(String name){
+    public void addNewPlayer(String name) {
 
         if (!isPlayerAdded(name)) {
             this.lines.add(new Line(name));
         }
     }
 
-    public void addRolls(String name, int...rolls){
+    public void addRolls(String name, int... rolls) {
 
-        for (Line line :this.lines){
+        this.lines.stream()
+                .forEach(line -> {
+                    if (line.getName().equals(name)) {
+                        if (rolls.length > 0) {
+                            Arrays.stream(rolls)
+                                    .boxed()
+                                    .collect(Collectors.toList())
+                                    .forEach(roll -> line.addRoll(roll));
+                        }
+                    }
+                });
+       /* for (Line line :this.lines){
             if (line.getName().equals(name)){
 
                 for (int roll :rolls){
                     line.addRoll(roll);
                 }
             }
-        }
+        }*/
     }
 
-    public void addRolls(String name, String...rolls){
+    public void addRolls(String name, String... rolls) {
 
-        for (Line line :this.lines){
+        this.lines.stream()
+                .forEach(line -> {
+                    if (line.getName().equals(name)) {
+                        if (rolls.length > 0) {
+                            Arrays.asList(rolls)
+                                    .stream()
+                                    .forEach(roll -> line.addRoll(roll));
+                        }
+                    }
+                });
+        /*for (Line line :this.lines){
             if (line.getName().equals(name)){
 
                 for (String roll :rolls){
                     line.addRoll(roll);
                 }
             }
-        }
+        }*/
     }
 
     public List<Line> getLines() {
         return lines;
     }
 
-    private boolean isPlayerAdded (String name){
-
-        for (Line line :this.lines) {
+    private boolean isPlayerAdded(String name) {
+        return this.lines.stream()
+                .anyMatch(line -> line.getName()
+                        .equals(name));
+        /*for (Line line : this.lines) {
             if (line.getName().equals(name)) {
                 return true;
             }
         }
 
-        return false;
+        return false;*/
     }
 
-    public void calculatePuntuation () {
-        for (Line line : this.lines) {
+    public void calculatePuntuation() {
+        this.lines.stream()
+                .forEach(line -> line.caculateScores());
+        /*for (Line line : this.lines) {
             line.caculateScores();
-        }
+        }*/
     }
 }
