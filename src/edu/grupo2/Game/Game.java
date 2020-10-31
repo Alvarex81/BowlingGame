@@ -33,14 +33,7 @@ public class Game {
                         }
                     }
                 });
-       /* for (Line line :this.lines){
-            if (line.getName().equals(name)){
 
-                for (int roll :rolls){
-                    line.addRoll(roll);
-                }
-            }
-        }*/
     }
 
     public void addRolls(String name, String... rolls) {
@@ -55,14 +48,7 @@ public class Game {
                         }
                     }
                 });
-        /*for (Line line :this.lines){
-            if (line.getName().equals(name)){
 
-                for (String roll :rolls){
-                    line.addRoll(roll);
-                }
-            }
-        }*/
     }
 
     public List<Line> getLines() {
@@ -73,20 +59,11 @@ public class Game {
         return this.lines.stream()
                 .anyMatch(line -> line.getName()
                         .equals(name));
-        /*for (Line line : this.lines) {
-            if (line.getName().equals(name)) {
-                return true;
-            }
-        }
-
-        return false;*/
     }
 
     public void calculatePuntuation() {
         this.lines.stream()
                 .forEach(line -> line.caculateScores());
-        /*for (Line line : this.lines) {
-            line.caculateScores();
-        }*/
+
     }
 }
